@@ -20,7 +20,7 @@ header a{
     color: white;
     text-decoration: none;
     margin-left: 5px;
-    margin-right: 15px;
+    margin-right: 5px;
     text-shadow: 2px 2px black;
 }
 
@@ -32,7 +32,7 @@ header ul{
     list-style: none;
     text-align: right;
     margin-right:10px;
-    margin:0.3px;
+    margin: 0.3px 11px;
 }
 
 header li{
@@ -64,10 +64,13 @@ section{
     font-size: 80%;
 }
 
-a:hover {
+li:hover {
     background-color: rgba(153,213,255,0.43);
 }
 img:hover {
+    background-color: rgba(153,213,255,0.43);
+}
+#returnMenu:hover{
     background-color: rgba(153,213,255,0.43);
 }
 #publishButton{
