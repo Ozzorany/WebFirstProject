@@ -1,18 +1,17 @@
 body{
+    font-family: Arial;
+
 }
 
 header{
-    background-color: blue;
+    background-color: #0a64eb;
     height: 20%;
 }
 header img{
     display: inline-block;
     vertical-align: top;
     width: 2%;
-    margin-bottom: 0.3%;
-    margin-top: 0.3%;
-    margin-left: 0.3%;
-    line-height: 211%;
+    padding:0.3%;
 
 }
 header a{
@@ -22,19 +21,24 @@ header a{
     text-decoration: none;
     margin-left: 5px;
     margin-right: 15px;
+    text-shadow: 2px 2px black;
+}
+
+#navOptions{
+    font-size: 75%;
 }
 
 header ul{
     list-style: none;
     text-align: right;
     margin-right:10px;
-    margin:0px;
+    margin:1px;
 }
 
 header li{
     display: inline-block;
     vertical-align: top;
-    line-height: 211%;
+    line-height: 260%;
 
 }
 
@@ -51,10 +55,13 @@ nav{
 section{
     width: 70%;
     margin: 0.9% 16% 0 auto;
+
 }
 #yourTweet{
     width: 70%;
-    height: 100px;
+    height: 60px;
+    line-height: 450%;
+    font-size: 80%;
 }
 
 a:hover {
@@ -63,5 +70,30 @@ a:hover {
 img:hover {
     background-color: rgba(24,158,255,0.43);
 }
+#publishButton{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 75%;
+    margin-top: 2.5%;
+}
+
+.userName{
+    font-size: 75%;
+}
+.userComment{
+    font-size: 75%;
+}
+.userImage{
+    display: inline-block;
+    vertical-align: top;
+}
+.tweetDetails{
+    display: inline-block;
+    vertical-align: top;
+}
+.userTweet{
+    margin-top: 2%;
+}
+
 
 
