@@ -1,5 +1,6 @@
 body{
     font-family: Arial;
+    font-size: 1.2vw;
 }
 
 header{
@@ -52,9 +53,8 @@ nav{
     line-height: 211%;
 }
 section{
-    width: 70%;
-    margin: 0.9% 16% 0 auto;
-
+    width: 82%;
+    margin: 0.9% 6% 0 auto;
 }
 a:hover {
     background-color: rgba(24,158,255,0.43);
@@ -66,7 +66,7 @@ section span, input, button{
     font-size: 75%;
 }
 .generalUser{
-    width: 11%;
+    width: 12%;
     border:3px solid #e6e6e6;
     margin: 1%;
     padding: 1%;
@@ -76,6 +76,40 @@ section span, input, button{
     vertical-align: top;
 }
 .userName{
+    font-size: 75%;
+    margin-top: 12%;
+    margin-bottom: 10%;
+}
+.generalUser:hover {
+   border-color: silver;
+}
+#followees, #allUsers{
+    display: inline-block;
+    vertical-align: top;
+}
+#followees{
+    width: 18%;
+    border:5px solid #e6e6e6;
+    text-align: center;
+    border-radius: 5px;
+}
+#allUsers{
+    width: 80%;
+}
+.generalFoloweeUser{
+    width: 50%;
+    border:3px solid #e6e6e6;
+    padding: 3%;
+    text-align: center;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+.generalFoloweeUser:hover {
+    border-color: silver;
+}
+.userFoloweeName{
     font-size: 75%;
     margin-top: 12%;
     margin-bottom: 10%;
