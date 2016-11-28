@@ -32,13 +32,13 @@ header ul{
     list-style: none;
     text-align: right;
     margin-right:10px;
-    margin:1px;
+    margin:0.3px;
 }
 
 header li{
     display: inline-block;
     vertical-align: top;
-    line-height: 260%;
+    line-height: 293%;
 
 }
 
@@ -65,10 +65,10 @@ section{
 }
 
 a:hover {
-    background-color: rgba(24,158,255,0.43);
+    background-color: rgba(153,213,255,0.43);
 }
 img:hover {
-    background-color: rgba(24,158,255,0.43);
+    background-color: rgba(153,213,255,0.43);
 }
 #publishButton{
     display: inline-block;

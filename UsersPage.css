@@ -32,13 +32,13 @@ header ul{
     list-style: none;
     text-align: right;
     margin-right:10px;
-    margin:1px;
+    margin:0.3px;
 }
 
 header li{
     display: inline-block;
     vertical-align: top;
-    line-height: 260%;
+    line-height: 293%;
 
 }
 
@@ -53,14 +53,14 @@ nav{
     line-height: 211%;
 }
 section{
-    width: 82%;
-    margin: 0.9% 6% 0 auto;
+    width: 76%;
+    margin: 0.9% auto 0 auto;
 }
 a:hover {
-    background-color: rgba(24,158,255,0.43);
+    background-color: rgba(153,213,255,0.43);
 }
 img:hover {
-    background-color: rgba(24,158,255,0.43);
+    background-color: rgba(153,213,255,0.43);
 }
 section span, input, button{
     font-size: 75%;
@@ -68,12 +68,13 @@ section span, input, button{
 .generalUser{
     width: 12%;
     border:3px solid #e6e6e6;
-    margin: 1%;
+    margin-top: 0.4%;
     padding: 1%;
     text-align: center;
     border-radius: 4px;
     display: inline-block;
     vertical-align: top;
+    margin-right: 0.2%;
 }
 .userName{
     font-size: 75%;
