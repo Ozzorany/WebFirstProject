@@ -1,0 +1,51 @@
+#returnMenu{
+    line-height: 211%;
+}
+section{
+    width: 70%;
+    margin: 0.9% 16% 0 auto;
+
+}
+#yourTweet{
+    width: 70%;
+    height: 60px;
+    line-height: 450%;
+    font-size: 80%;
+}
+
+li:hover {
+    background-color: rgba(153,213,255,0.43);
+}
+img:hover {
+    background-color: rgba(153,213,255,0.43);
+}
+#returnMenu:hover{
+    background-color: rgba(153,213,255,0.43);
+}
+#publishButton{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 75%;
+    margin-top: 2.5%;
+}
+
+.userName{
+    font-size: 75%;
+}
+.userComment{
+    font-size: 75%;
+}
+.userImage{
+    display: inline-block;
+    vertical-align: top;
+}
+.tweetDetails{
+    display: inline-block;
+    vertical-align: top;
+}
+.userTweet{
+    margin-top: 2%;
+}
+
+
+
