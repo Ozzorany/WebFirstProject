@@ -2,49 +2,23 @@ body{
     font-family: Arial;
     font-size: 1.2vw;
 }
-
-header{
-    background-color: #0a64eb;
-    height: 20%;
-}
 header img{
-    display: inline-block;
-    vertical-align: top;
-    width: 2%;
-    padding:0.3%;
-
-}
-header a{
-    display: inline-block;
-    vertical-align: top;
-    color: white;
-    text-decoration: none;
-    margin-left: 5px;
-    margin-right: 5px;
-    text-shadow: 2px 2px black;
+    width: 20%;
 }
 
-#navOptions{
-    font-size: 75%;
+.navbar-inverse{
+    background-color: #0a64eb;
 }
 
-header ul{
-    list-style: none;
-    text-align: right;
-    margin-right:10px;
-    margin: 0.3px 11px;
+.navbar-inverse a{
+    color: white !important;
 }
 
-header li{
-    display: inline-block;
-    vertical-align: top;
-    line-height: 293%;
-
+.navbar-inverse span{
+    color: white !important;
 }
 
-nav{
-    height: 100%;
-    display: inline-block;
-    vertical-align: top;
-    float: right;
+.navbar-inverse :hover{
+   color: lightgray !important;
 }
+

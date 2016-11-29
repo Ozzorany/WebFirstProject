@@ -3,93 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <title>OfekTwitter</title>
-    <link href="../css/noralize.css" rel="stylesheet"/>
     <link href="../css/Tweeting.css" rel="stylesheet"/>
+    <link href="../css/bootstrap.css" rel="stylesheet"/>
     <link href="../css/main.css" rel="stylesheet"/>
 </head>
 <body>
 <header>
-    <img id="logoOfek" src="../images/ofek.png">
-    <a id="returnMenu" href="Tweeting.html">Ofek Twitter</a>
-    <nav id="navOptions">
-        <ul>
-            <li><a href="UsersPage.html">Users</a></li>
-            <li><a href="Tweeting.html">Sign up</a></li>
-            <li><a href="Tweeting.html">Sign in</a></li>
-        </ul>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-header">
+                    <a href="../html/Tweeting.html">
+                        <img class="navbar-brand" id="logoOfek" src="../images/ofek.png">
+                        <span id="returnNav" class="navbar-brand"> OfekTwitter</span>
+                    </a>
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="UsersPage.html">Users</a></li>
+                <li><a href="Tweeting.html">Sign up</a></li>
+                <li><a href="Tweeting.html">Sign in</a></li>
+            </ul>
+        </div>
     </nav>
 </header>
-<section>
-    <input type="textarea" id="yourTweet" placeholder="tweet text..."></input>
-    <button id="publishButton">publish</button>
-    <div id="tweets">
-        <div class="userTweet">
-            <div class="userImage">
-                <img src="../images/useravatar.png">
-            </div>
-            <div class="tweetDetails">
-                <div class="userName">
-                    <b>James Bond says:</b>
-                </div>
-                <div class="userComment">
-                    Blabla bla...
-                </div>
-            </div>
-        </div>
-        <div class="userTweet">
-            <div class="userImage">
-                <img src="../images/useravatar.png">
-            </div>
-            <div class="tweetDetails">
-                <div class="userName">
-                    <b>James Bond says:</b>
-                </div>
-                <div class="userComment">
-                    Bond, James bond
-                </div>
-            </div>
-        </div>
 
-        <div class="userTweet">
-            <div class="userImage">
-                <img src="../images/useravatar.png">
-            </div>
+<div class="container">
+    <textarea placeholder="tweet text" rows="3" class="form-control"></textarea>
+    <button class="btn btn-primary pull-right btn-large">publish</button>
+    <section class="tweets container">
+        <div class="userTweet row">
+                <div class="userImage">
+                    <img src="../images/useravatar.png">
+                </div>
             <div class="tweetDetails">
                 <div class="userName">
-                    <b>Albert Einstein says:</b>
+                    <b>James Bond says:</b>
                 </div>
                 <div class="userComment">
-                    E = mc^2
+                    <div class="userName">
+                        Blabla bla...
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="userTweet">
-            <div class="userImage">
-                <img src="../images/useravatar.png">
-            </div>
-            <div class="tweetDetails">
-                <div class="userName">
-                    <b>Bill Gates says:</b>
+        <div class="row">
+            <div class="userTweet">
+                <div class="userImage">
+                    <img src="../images/useravatar.png">
                 </div>
-                <div class="userComment">
-                    I think 64 bytes should be enough for everyone
-                </div>
-            </div>
-        </div>
-        <div class="userTweet">
-            <div class="userImage">
-                <img src="../images/useravatar.png">
-            </div>
-            <div class="tweetDetails">
-                <div class="userName">
-                    <b>Frodo says:</b>
-                </div>
-                <div class="userComment">
-                    My Precious
+                <div class="tweetDetails">
+                    <div class="userName">
+                        <b>James Bond says:</b>
+                    </div>
+                    <div class="userComment">
+                        Bond, James bond
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+        <div class="row">
+            <div class="userTweet">
+                <div class="userImage">
+                    <img src="../images/useravatar.png">
+                </div>
+                <div class="tweetDetails">
+                    <div class="userName">
+                        <b>Albert Einstein says:</b>
+                    </div>
+                    <div class="userComment">
+                        E = mc^2
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="userTweet">
+                <div class="userImage">
+                    <img src="../images/useravatar.png">
+                </div>
+                <div class="tweetDetails">
+                    <div class="userName">
+                        <b>Bill Gates says:</b>
+                    </div>
+                    <div class="userComment">
+                        I think 64 bytes should be enough for everyone
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="userTweet">
+                <div class="userImage">
+                    <img src="../images/useravatar.png">
+                </div>
+                <div class="tweetDetails">
+                    <div class="userName">
+                        <b>Frodo says:</b>
+                    </div>
+                    <div class="userComment">
+                        My Precious
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 </body>
 </html>

@@ -1,27 +1,10 @@
-#returnMenu{
-    line-height: 211%;
-}
+
 section{
     width: 70%;
     margin: 0.9% 16% 0 auto;
 
 }
-#yourTweet{
-    width: 70%;
-    height: 60px;
-    line-height: 450%;
-    font-size: 80%;
-}
 
-li:hover {
-    background-color: rgba(153,213,255,0.43);
-}
-img:hover {
-    background-color: rgba(153,213,255,0.43);
-}
-#returnMenu:hover{
-    background-color: rgba(153,213,255,0.43);
-}
 #publishButton{
     display: inline-block;
     vertical-align: top;
@@ -30,21 +13,21 @@ img:hover {
 }
 
 .userName{
-    font-size: 75%;
+    font-size: 100%;
 }
 .userComment{
-    font-size: 75%;
-}
-.userImage{
-    display: inline-block;
-    vertical-align: top;
-}
-.tweetDetails{
-    display: inline-block;
-    vertical-align: top;
+    font-size: 95%;
 }
 .userTweet{
     margin-top: 2%;
+}
+
+.userImage{
+    float: left;
+}
+
+.tweetDetails{
+    margin-left: 5%;
 }
 
 
