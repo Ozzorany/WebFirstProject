@@ -1,17 +1,3 @@
-
-section{
-    width: 70%;
-    margin: 0.9% 16% 0 auto;
-
-}
-
-#publishButton{
-    display: inline-block;
-    vertical-align: top;
-    font-size: 75%;
-    margin-top: 2.5%;
-}
-
 .userName{
     font-size: 100%;
 }
