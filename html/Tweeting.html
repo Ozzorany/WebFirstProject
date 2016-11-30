@@ -6,6 +6,7 @@
     <link href="../css/Tweeting.css" rel="stylesheet"/>
     <link href="../css/bootstrap.css" rel="stylesheet"/>
     <link href="../css/main.css" rel="stylesheet"/>
+    <script src="../javaScript/Tweeting.js"></script>
 </head>
 <body>
 <header>
@@ -36,84 +37,24 @@
 </header>
 
 <div class="container">
-    <textarea placeholder="tweet text" rows="3" class="form-control"></textarea>
-    <button class="btn btn-primary pull-right btn-large">publish</button>
-    <section class="tweets container">
-        <div class="userTweet row">
-                <div class="userImage">
-                    <img src="../images/useravatar.png">
-                </div>
-            <div class="tweetDetails">
-                <div class="userName">
-                    <b>James Bond says:</b>
-                </div>
-                <div class="userComment">
-                    <div class="userName">
-                        Blabla bla...
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="userTweet">
-                <div class="userImage">
-                    <img src="../images/useravatar.png">
-                </div>
-                <div class="tweetDetails">
-                    <div class="userName">
-                        <b>James Bond says:</b>
-                    </div>
-                    <div class="userComment">
-                        Bond, James bond
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="userTweet">
-                <div class="userImage">
-                    <img src="../images/useravatar.png">
-                </div>
-                <div class="tweetDetails">
-                    <div class="userName">
-                        <b>Albert Einstein says:</b>
-                    </div>
-                    <div class="userComment">
-                        E = mc^2
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="userTweet">
-                <div class="userImage">
-                    <img src="../images/useravatar.png">
-                </div>
-                <div class="tweetDetails">
-                    <div class="userName">
-                        <b>Bill Gates says:</b>
-                    </div>
-                    <div class="userComment">
-                        I think 64 bytes should be enough for everyone
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="userTweet">
-                <div class="userImage">
-                    <img src="../images/useravatar.png">
-                </div>
-                <div class="tweetDetails">
-                    <div class="userName">
-                        <b>Frodo says:</b>
-                    </div>
-                    <div class="userComment">
-                        My Precious
-                    </div>
-                </div>
-            </div>
-        </div>
+    <textarea id="tweetText" placeholder="tweet text" rows="3" class="form-control"></textarea>
+    <button id="publishButton" class="btn btn-primary pull-right btn-large">publish</button>
+    <section id="allTweets" class="tweets container">
+        <!--<div class="row">-->
+            <!--<div class="userTweet">-->
+                <!--<div class="userImage">-->
+                    <!--<img src="../images/useravatar.png">-->
+                <!--</div>-->
+                <!--<div class="tweetDetails">-->
+                    <!--<div class="userName">-->
+                        <!--<b>Frodo says:</b>-->
+                    <!--</div>-->
+                    <!--<div class="userComment">-->
+                        <!--My Precious-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </section>
 </div>
 </body>
