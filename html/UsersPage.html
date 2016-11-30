@@ -6,6 +6,7 @@
     <link href="../css/UsersPage.css" rel="stylesheet"/>
     <link href="../css/bootstrap.css" rel="stylesheet"/>
     <link href="../css/main.css" rel="stylesheet"/>
+    <script src="../javaScript/UserPage.js"></script>
 </head>
 <body>
 <header>
@@ -41,204 +42,32 @@
         <div class="col-md-3">
             <input type="text" id="filter-user" class="form-control" placeholder="filter by user name">
         </div>
-        <button class="btn btn-primary">ok</button>
+        <button id="filterButton" class="btn btn-primary">ok</button>
     </div>
     <div class="row">
-        <div class="col-md-10 allUsers">
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Marty McFly
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="existing-users" class="col-md-10 allUsers">
 
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Janis Joplin
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Albert Einstein
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Genghis Khan
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">unfollow</button>
-                        </div>
-                        <div class="userName">
-                            Dracula
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Forest Gump
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Caligula
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Winnie the Pooh
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">follow</button>
-                        </div>
-                        <div class="userName">
-                            Obama
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">unfollow</button>
-                        </div>
-                        <div class="userName">
-                            Henry the 8th
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="col-md-2 followees">
+        <div id="folowees-users" class="col-md-2 followees">
             <div class="col-md-12 ">
                 <h2>Followees</h2>
             </div>
-            <div class="col-md-12">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">unfollow</button>
-                        </div>
-                        <div class="userName">
-                            Dracula
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="thumbnail">
-                    <div class="generalUser">
-                        <div class="userImage">
-                            <img src="../images/useravatar.png">
-                        </div>
-                        <div class="userFollow">
-                            <button class="btn btn-primary">unfollow</button>
-                        </div>
-                        <div class="userName">
-                            Henry the 8th
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="col-md-12">-->
+                <!--<div class="thumbnail">-->
+                    <!--<div class="generalUser">-->
+                        <!--<div class="userImage">-->
+                            <!--<img src="../images/useravatar.png">-->
+                        <!--</div>-->
+                        <!--<div class="userFollow">-->
+                            <!--<button class="btn btn-primary">unfollow</button>-->
+                        <!--</div>-->
+                        <!--<div class="userName">-->
+                            <!--Dracula-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
         </div>
     </div>
 </div>
