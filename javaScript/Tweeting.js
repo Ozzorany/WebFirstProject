@@ -1,12 +1,16 @@
 var usersTweers = [
-    {username: 'Bobo', text: 'hello followers!'},
-    {username: 'Elvis', text: 'this exercise is really easy!'},
-    {username: 'Mimi', text: 'I want to go to sleep'}
+    {userName: 'Bobo', text: 'hello followers!', imgae: "../images/useravatar.png"},
+    {userName: 'Elvis', text: 'this exercise is really easy!', imgae: "../images/useravatar.png"},
+    {userName: 'Mimi', text: 'I want to go to sleep', imgae: "../images/useravatar.png"}
 ]
 
 window.onload = function () {
-    var publishButton = document.getElementById("publishButton");
+
     realoadExistingTweets();
+    onPageLoad();
+
+    var publishButton = document.getElementById("publishButton");
+
     publishButton.addEventListener("click", function () {
         createPublishedTweet();
         document.getElementById("tweetText").value= "";
@@ -15,12 +19,13 @@ window.onload = function () {
 
 
 var realoadExistingTweets = function () {
+    var tweetSection = document.getElementById("allTweets");
     for (userTweet of usersTweers) {
-        tweetStructure(userTweet.username, userTweet.text, "../images/useravatar.png", "existingTweet");
+        tweetSection.appendChild(tweetStructure(userTweet, "existingTweet"));
     }
 };
 
-var tweetStructure = function (NameUser, comment, imageSource, nameClass) {
+var tweetStructure = function (user, nameClass) {
 
     var generalTweet = createDivElement();
     generalTweet.className = "row";
@@ -41,33 +46,20 @@ var tweetStructure = function (NameUser, comment, imageSource, nameClass) {
     userTweet.appendChild(details);
     details.appendChild(userName);
     details.appendChild(userComment);
-    userComment.appendChild(document.createTextNode(comment));
-    userNameBold.appendChild(document.createTextNode(NameUser));
+    userComment.appendChild(document.createTextNode(user.text));
+    userNameBold.appendChild(document.createTextNode(user.userName));
     userName.appendChild(userNameBold);
 
+    image.setAttribute("src", user.imgae);
 
-    var existingComment = document.createTextNode(comment);
-    image.setAttribute("src", imageSource);
-
-    var tweetSection = document.getElementById("allTweets");
-    tweetSection.appendChild(generalTweet);
+    return generalTweet;
 };
 
 var createPublishedTweet = function () {
+    var tweetSection = document.getElementById("allTweets");
+    var selfUser = {userName: 'Oz', text: '', imgae:"../images/useravatar.png"}
     var existingComment = (document.getElementById("tweetText").value);
-    tweetStructure("Oz", existingComment,"../images/useravatar.png", "published");
-    usersTweers.push({username: "Oz", text: existingComment});
-};
-
-
-var createDivElement = function () {
-    return document.createElement("div")
-};
-
-var createImageElement = function () {
-    return document.createElement("img")
-};
-
-var createBoldElement = function () {
-    return document.createElement("b")
+    selfUser.text = existingComment;
+    tweetSection.appendChild(tweetStructure(selfUser, "published"));
+    usersTweers.push({userName: "Oz", text: existingComment});
 };

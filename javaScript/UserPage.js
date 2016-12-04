@@ -1,43 +1,49 @@
-var usersNames = [{name: "Marty McFly", stage: "follow"}, {name: "Tooli", stage: "follow"}, {
+var usersNames = [{id: "_1", name: "Marty McFly", stage: "follow", image: "../images/useravatar.png"}, {
+    id: "_2",
+    name: "Tooli",
+    stage: "follow",
+    image: "../images/useravatar.png"
+}, {id: "_9",
     name: "Oz",
-    stage: "follow"
-}, {name: "Marty McFly", stage: "follow"}, {name: "Marty McFly", stage: "follow"}, {
-    name: "Marty McFly",
-    stage: "follow"
+    stage: "follow", image: "../images/useravatar.png"
+}, {id: "_3", name: "Marty McFly", stage: "follow", image: "../images/useravatar.png"}, {id: "_4",
+    name: "Ofek",
+    stage: "follow",
+    image: "../images/useravatar.png"
+}, {id: "_5",
+    name: "Ofir",
+    stage: "follow", image: "../images/useravatar.png"
 },
-    {name: "Marty McFly", stage: "follow"}, {name: "Marty McFly", stage: "follow"}, {
-        name: "Marty McFly",
-        stage: "follow"
-    }, {name: "Marty McFly", stage: "follow"}];
-
-var currentShowedUsers = usersNames.slice();
+    {id: "_6",name: "Sagi", stage: "follow", image: "../images/useravatar.png"}, {id: "_10",
+        name: "Feldman",
+        stage: "follow",
+        image: "../images/useravatar.png"
+    }, {id: "_7",
+        name: "Amit",
+        stage: "follow", image: "../images/useravatar.png"
+    }, {id: "_8",name: "Yuval", stage: "follow", image: "../images/useravatar.png"}];
 
 window.onload = function () {
     reloadExistingUsers();
     var filterhSearch = document.getElementById("filter-user");
 
     filterhSearch.addEventListener("input", function () {
-        var textToFilter = document.getElementById("filter-user").value;
-        currentShowedUsers = usersNames.filter(function(user){
-            return user.name.includes(textToFilter);
-        });
-        var existingUsersSection = document.getElementById("existing-users");
-        existingUsersSection.innerHTML = "";
-        reloadExistingUsers();
+        filterUsers();
     });
 };
 
 var reloadExistingUsers = function () {
-
-    for (user of currentShowedUsers) {
-        showUser(user.name, "../images/useravatar.png", user.stage, "col-md-2");
+    var existingUsersSection = document.getElementById("existing-users");
+    for (user of usersNames) {
+        existingUsersSection.appendChild(UserSectionStructure(user, "col-md-2"));
     }
 };
 
-var UserStructure = function (NameUser, imageSource, userStage, SectionSize) {
+var UserSectionStructure = function (user, sectionSize) {
 
     var userSection = createDivElement();
-    userSection.className = SectionSize;
+    userSection.className = sectionSize;
+    userSection.id = user.id;
     var thumbnail = createDivElement();
     thumbnail.className = "thumbnail";
     var generalUser = createDivElement();
@@ -48,7 +54,7 @@ var UserStructure = function (NameUser, imageSource, userStage, SectionSize) {
     userFollow.className = "userFollow";
     var button = createInputlement();
     button.className = "btn btn-primary follow";
-    button.type="button";
+    button.type = "button";
     var userName = createDivElement();
     userName.className = "userName";
 
@@ -58,48 +64,44 @@ var UserStructure = function (NameUser, imageSource, userStage, SectionSize) {
     generalUser.appendChild(userFollow);
     generalUser.appendChild(userName);
     userFollow.appendChild(button);
-    userName.appendChild(document.createTextNode(NameUser));
-    button.value = (userStage);
+    userName.appendChild(document.createTextNode(user.name));
+    button.value = (user.stage);
+    userImage.setAttribute("src", user.image);
     button.onclick = function () {
-        chengeStatus(button);
-        //showFolowee(button);
+        if (button.value == "follow") {
+            showFolowee(user);
+            changeStatus("folowees-users", user.id, "unfollow");
+            changeStatus("existing-users", user.id, "unfollow");
+        } else {
+            changeStatus("existing-users", user.id, "follow");
+            removeFollowee(user.id);
+        }
     };
-
-    userImage.setAttribute("src", imageSource);
 
     return userSection;
 };
 
-var chengeStatus = function(button){
-    if(button.value === "follow"){
-        button.value = "unfollow";
-    } else {
-        button.value = "follow";
+var filterUsers = function(){
+    var textToFilter = document.getElementById("filter-user").value;
+    for(user of usersNames){
+        if(!user.name.includes(textToFilter)){
+            document.querySelector("#existing-users" +  " #" + user.id).style.display = "none";
+        } else {
+            document.querySelector("#existing-users" +  " #" + user.id).style.display = "block";
+        }
     }
 }
 
-var showUser = function (NameUser, imageSource, userStage, SectionSize) {
-    var existingUsersSection = document.getElementById("existing-users");
-    existingUsersSection.appendChild(UserStructure(NameUser, imageSource, userStage, SectionSize));
+var changeStatus = function (sectionToChange, userId, status) {
+    document.querySelector("#" + sectionToChange +  " #" + userId).getElementsByClassName("follow")[0].value = status;
 }
 
-var showFolowee = function (NameUser, imageSource, userStage) {
+var removeFollowee = function (userId) {
+   document.querySelector('#folowees-users #' + userId).remove();
+}
+
+var showFolowee = function (user) {
+    user.stage = "unfollow";
     var FoloweeSection = document.getElementById("folowees-users");
-    FoloweeSection.appendChild(UserStructure(NameUser, "../images/useravatar.png", userStage,"col-md-12"));
+    FoloweeSection.appendChild(UserSectionStructure(user, "col-md-12"));
 }
-
-var createDivElement = function () {
-    return document.createElement("div")
-};
-
-var createImageElement = function () {
-    return document.createElement("img")
-};
-
-var createBoldElement = function () {
-    return document.createElement("b")
-};
-
-var createInputlement = function () {
-    return document.createElement("input")
-};

@@ -1,0 +1,22 @@
+.passed{
+    background-color: #bafdba;
+    border:1px solid black;
+    border-radius: 2px;
+}
+
+.failed{
+    background-color: red;
+    border:1px solid black;
+    border-radius: 2px;
+}
+
+.testGroup{
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+}
+
+li{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    list-style-type: none;
+}
