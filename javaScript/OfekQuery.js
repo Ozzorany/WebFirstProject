@@ -2,7 +2,7 @@ const selectorFilters = {
     id: filterById,
     class: filterByClass,
     tag: filterByTag
-}
+};
 
 function findSelectorType(selector){
     if(selector.startsWith("#")){
@@ -62,79 +62,83 @@ function $(selector){
 
 function OfekQuery(elements){
     this.elements = elements;
+}
 
-    OfekQuery.prototype.addClass = function (class_name){
-        elements.forEach(function(element){
+
+OfekQuery.prototype = {
+    addClass: function (class_name){
+        this.elements.forEach(function(element){
             element.classList.add(class_name);
         })
-    };
+    },
 
-    OfekQuery.prototype.removeClass = function (class_name){
-        elements.forEach(function(element){
+    removeClass: function (class_name){
+        this.elements.forEach(function(element){
             element.classList.remove(class_name);
         })
-    };
+    },
 
-    OfekQuery.prototype.css = function (property, value){
-        elements.forEach(function(element){
+    css: function (property, value){
+        this.elements.forEach(function(element){
             element.style[property] = value;
         })
-    };
 
-    OfekQuery.prototype.count = function(){
-        return elements.length;
-    };
+    },
 
-    OfekQuery.prototype.get = function(index){
-        return elements[index];
-    };
+    count: function (){
+        return this.elements.length;
 
-    OfekQuery.prototype.setAttribute = function(attributeName, attributeValue){
-        elements.forEach(function(element){
+    },
+
+    get: function (index){
+        return this.elements[index];
+
+    },
+
+    setAttribute: function (attributeName, attributeValue){
+        this.elements.forEach(function(element){
             element.setAttribute(attributeName,attributeValue);
         })
-    };
+    },
 
-    OfekQuery.prototype.getAttribute = function(attributeName){
-      var attributes = [];
-      elements.forEach(function(element){
-          if(element.getAttribute(attributeName)){
-              attributes.push(element.getAttribute(attributeName));
-          }
-      });
-      return attributes;
-    };
+    getAttribute: function (attributeName){
+        var attributes = [];
+        this.elements.forEach(function(element){
+            if(element.getAttribute(attributeName)){
+                attributes.push(element.getAttribute(attributeName));
+            }
+        });
+        return attributes;
+    },
 
-    OfekQuery.prototype.appendChild = function(childElement){
+    appendChild: function (childElement){
         var docFrag = document.createDocumentFragment();
         docFrag.appendChild(childElement);
-        elements.forEach(function(element){
+        this.elements.forEach(function(element){
             element.appendChild(docFrag.cloneNode(true));
         });
-    };
+    },
 
-    OfekQuery.prototype.each = function (fn) {
-        elements.forEach(function(element){
-            fn(element);
+    each: function (fn) {
+        this.elements.forEach(fn);
+
+    },
+
+    map: function (fn){
+        var cloneElements = [];
+        this.elements.forEach(function (element){
+            var clonedElement = element.cloneNode(true);
+            fn(clonedElement);
+            cloneElements.push(clonedElement);
         });
-    };
 
-    OfekQuery.prototype.map = function(fn){
-      var cloneElements = [];
-      elements.forEach(function (element){
-          var clonedElement = element.cloneNode(true);
-          fn(clonedElement);
-          cloneElements.push(clonedElement);
+        return cloneElements;
+    },
 
-      });
-
-      return cloneElements;
-    };
-
-    OfekQuery.prototype.filter = function(){
+    filter: function (){
         let checkFunctions = Array.from(arguments);
         let suitableElements = [];
-        elements.forEach(function(element){
+        this.elements.forEach(function(element){
             let suitable = true;
             checkFunctions.forEach(function(argument){
                 suitable = suitable && argument(element);
@@ -144,33 +148,36 @@ function OfekQuery(elements){
             }
         });
         return new OfekQuery(suitableElements);
-    };
+    },
 
-    OfekQuery.prototype.all = function(){
+    all: function (){
         let checkFunctions = Array.from(arguments);
-        for (element of elements){
-            for(arguments of checkFunctions){
-                if(!arguments(element)){
+        for (element of this.elements){
+            for(argument of checkFunctions){
+                if(!argument(element)){
                     return false;
                 }
             }
         }
 
         return true;
-    }
+    },
 
-    OfekQuery.prototype.any = function(){
+    any: function(){
         let checkFunctions = Array.from(arguments);
-        for(element of elements){
+        for(element of this.elements){
             for(argument of checkFunctions){
                 if(argument(element) &&
-                checkFunctions.indexOf(argument) + 1 == checkFunctions.length){
+                    checkFunctions.indexOf(argument) + 1 == checkFunctions.length){
                     return true;
+                } else if(!argument(element)){
+                    break;
                 }
             }
         }
         return false;
     }
 }
+
 
 

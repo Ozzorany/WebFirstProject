@@ -25,7 +25,8 @@ var usersNames = [{id: "_1", name: "Marty McFly", stage: "follow", image: "../im
 
 window.onload = function () {
     reloadExistingUsers();
-    var filterhSearch = document.getElementById("filter-user");
+    var filterhSearch = $("#filter-user").elements[0];
+
 
     filterhSearch.addEventListener("input", function () {
         filterUsers();
@@ -33,7 +34,7 @@ window.onload = function () {
 };
 
 var reloadExistingUsers = function () {
-    var existingUsersSection = document.getElementById("existing-users");
+    var existingUsersSection =  $("#existing-users").elements[0];
     for (user of usersNames) {
         existingUsersSection.appendChild(UserSectionStructure(user, "col-md-2"));
     }
@@ -82,26 +83,26 @@ var UserSectionStructure = function (user, sectionSize) {
 };
 
 var filterUsers = function(){
-    var textToFilter = document.getElementById("filter-user").value;
+    var textToFilter =  $("#filter-user").elements[0].value;
     for(user of usersNames){
         if(!user.name.includes(textToFilter)){
-            document.querySelector("#existing-users" +  " #" + user.id).style.display = "none";
+            $("#existing-users" +  " #" + user.id).elements[0].style.display = "none";
         } else {
-            document.querySelector("#existing-users" +  " #" + user.id).style.display = "block";
+            $("#existing-users" +  " #" + user.id).elements[0].style.display = "block";
         }
     }
 }
 
 var changeStatus = function (sectionToChange, userId, status) {
-    document.querySelector("#" + sectionToChange +  " #" + userId).getElementsByClassName("follow")[0].value = status;
+    $("#" + sectionToChange +  " #" + userId).elements[0].getElementsByClassName("follow")[0].value = status;
 }
 
 var removeFollowee = function (userId) {
-   document.querySelector('#folowees-users #' + userId).remove();
+    $('#folowees-users #' + userId).elements[0].remove();
 }
 
 var showFolowee = function (user) {
     user.stage = "unfollow";
-    var FoloweeSection = document.getElementById("folowees-users");
+    var FoloweeSection = $("#folowees-users").elements[0];
     FoloweeSection.appendChild(UserSectionStructure(user, "col-md-12"));
 }
