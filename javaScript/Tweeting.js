@@ -15,6 +15,7 @@ window.onload = function () {
         createPublishedTweet();
         document.getElementById("tweetText").value= "";
     });
+    $("div");
 };
 
 
