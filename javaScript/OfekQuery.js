@@ -4,39 +4,39 @@ const selectorFilters = {
     tag: filterByTag
 };
 
-function findSelectorType(selector){
-    if(selector.startsWith("#")){
+function findSelectorType(selector) {
+    if (selector.startsWith("#")) {
         return 'id';
-    } else if(selector.startsWith(".")){
+    } else if (selector.startsWith(".")) {
         return 'class';
     } else {
         return 'tag';
     }
 }
 
-function filterByTag(elements, selector){
-    return elements.filter(function(elem){
+function filterByTag(elements, selector) {
+    return elements.filter(function (elem) {
         return elem.tagName === selector.toUpperCase();
     });
 }
 
-function filterById(elements, selector){
-    return elements.filter(function(elem){
+function filterById(elements, selector) {
+    return elements.filter(function (elem) {
         return elem.id === selector.substring(1);
     });
 }
 
-function filterByClass(elements, selector){
-    return elements.filter(function(elem){
+function filterByClass(elements, selector) {
+    return elements.filter(function (elem) {
         return elem.classList.contains(selector.substring(1));
     });
 }
 
-function expandTree(elements){
+function expandTree(elements) {
     let expandTree = [];
-    elements.forEach(function(element){
-        if(element.children.length){
-            Array.from(element.getElementsByTagName('*')).forEach(function(childElement){
+    elements.forEach(function (element) {
+        if (element.children.length) {
+            Array.from(element.getElementsByTagName('*')).forEach(function (childElement) {
                 expandTree.push(childElement);
             });
         } else {
@@ -46,75 +46,79 @@ function expandTree(elements){
     return expandTree;
 }
 
-function $(selector){
+function $(selector) {
     var elements = Array.from(document.all);
-    var selectors = selector.split(" ");
+    if (typeof selector !== 'string') {
+        elements = [];
+    } else {
+        var selectors = selector.split(" ");
+        selectors.forEach(function (selector) {
+            elements = selectorFilters[findSelectorType(selector)](elements, selector);
+            if (selectors.indexOf(selector) != selectors.length - 1) {
+                elements = Array.from(new Set(expandTree(elements)));
+            }
+        });
+    }
 
-    selectors.forEach(function(selector){
-        elements = selectorFilters[findSelectorType(selector)](elements, selector);
-        if(selectors.indexOf(selector) != selectors.length - 1){
-            elements = Array.from(new Set(expandTree(elements)));
-        }
-    });
 
     return new OfekQuery(elements);
 }
 
-function OfekQuery(elements){
+function OfekQuery(elements) {
     this.elements = elements;
 }
 
 
 OfekQuery.prototype = {
-    addClass: function (class_name){
-        this.elements.forEach(function(element){
+    addClass: function (class_name) {
+        this.elements.forEach(function (element) {
             element.classList.add(class_name);
         })
     },
 
-    removeClass: function (class_name){
-        this.elements.forEach(function(element){
+    removeClass: function (class_name) {
+        this.elements.forEach(function (element) {
             element.classList.remove(class_name);
         })
     },
 
-    css: function (property, value){
-        this.elements.forEach(function(element){
+    css: function (property, value) {
+        this.elements.forEach(function (element) {
             element.style[property] = value;
         })
 
     },
 
-    count: function (){
+    count: function () {
         return this.elements.length;
 
     },
 
-    get: function (index){
+    get: function (index) {
         return this.elements[index];
 
     },
 
-    setAttribute: function (attributeName, attributeValue){
-        this.elements.forEach(function(element){
-            element.setAttribute(attributeName,attributeValue);
+    setAttribute: function (attributeName, attributeValue) {
+        this.elements.forEach(function (element) {
+            element.setAttribute(attributeName, attributeValue);
         })
     },
 
-    getAttribute: function (attributeName){
+    getAttribute: function (attributeName) {
         var attributes = [];
-        this.elements.forEach(function(element){
-            if(element.getAttribute(attributeName)){
+        this.elements.forEach(function (element) {
+            if (element.getAttribute(attributeName)) {
                 attributes.push(element.getAttribute(attributeName));
             }
         });
         return attributes;
     },
 
-    appendChild: function (childElement){
+    appendChild: function (childElement) {
         var docFrag = document.createDocumentFragment();
         docFrag.appendChild(childElement);
-        this.elements.forEach(function(element){
+        this.elements.forEach(function (element) {
             element.appendChild(docFrag.cloneNode(true));
         });
     },
@@ -124,9 +128,9 @@ OfekQuery.prototype = {
 
     },
 
-    map: function (fn){
+    map: function (fn) {
         var cloneElements = [];
-        this.elements.forEach(function (element){
+        this.elements.forEach(function (element) {
             var clonedElement = element.cloneNode(true);
             fn(clonedElement);
             cloneElements.push(clonedElement);
@@ -135,26 +139,26 @@ OfekQuery.prototype = {
         return cloneElements;
     },
 
-    filter: function (){
+    filter: function () {
         let checkFunctions = Array.from(arguments);
         let suitableElements = [];
-        this.elements.forEach(function(element){
+        this.elements.forEach(function (element) {
             let suitable = true;
-            checkFunctions.forEach(function(argument){
+            checkFunctions.forEach(function (argument) {
                 suitable = suitable && argument(element);
             });
-            if(suitable){
+            if (suitable) {
                 suitableElements.push(element);
             }
         });
         return new OfekQuery(suitableElements);
     },
 
-    all: function (){
+    all: function () {
         let checkFunctions = Array.from(arguments);
-        for (element of this.elements){
-            for(argument of checkFunctions){
-                if(!argument(element)){
+        for (element of this.elements) {
+            for (argument of checkFunctions) {
+                if (!argument(element)) {
                     return false;
                 }
             }
@@ -163,14 +167,14 @@ OfekQuery.prototype = {
         return true;
     },
 
-    any: function(){
+    any: function () {
         let checkFunctions = Array.from(arguments);
-        for(element of this.elements){
-            for(argument of checkFunctions){
-                if(argument(element) &&
-                    checkFunctions.indexOf(argument) + 1 == checkFunctions.length){
+        for (element of this.elements) {
+            for (argument of checkFunctions) {
+                if (argument(element) &&
+                    checkFunctions.indexOf(argument) + 1 == checkFunctions.length) {
                     return true;
-                } else if(!argument(element)){
+                } else if (!argument(element)) {
                     break;
                 }
             }
