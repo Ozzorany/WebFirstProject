@@ -1,0 +1,25 @@
+{
+  "name": "tweeter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bootstrap": "^3.3.7",
+    "qwest": "^4.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ozzorany/WebFirstProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ozzorany/WebFirstProject/issues"
+  },
+  "homepage": "https://github.com/Ozzorany/WebFirstProject#readme"
+}
