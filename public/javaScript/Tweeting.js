@@ -1,14 +1,12 @@
 var usersTweers = [];
+const tempId = "ff2b41b9-e1d8-4594-9aa3-c1dda30b0d22";
 
 let mapUsresName = function () {
     return getAllUsers()
         .then(function (response) {
+            getNameById(usersTweers, response.data);
             for (user of usersTweers) {
-                for (userData of response.data) {
-                    if (user.userName === userData._id) {
-                        user.userName = userData.username;
-                    }
-                }
+                user.userName = getNameById(user.userName, response.data);
             }
         })
         .catch(function (error) {
@@ -78,31 +76,16 @@ var tweetStructure = function (user, nameClass) {
 
 var createPublishedTweet = function () {
     var tweetSection = $("#allTweets").elements[0];
-    var selfUser = {userName: 'Oz', text: '', image: "images/useravatar.png"}
+    var selfUser = {userName: 'Bulter', text: '', image: "images/useravatar.png"}
     var existingComment = ($("#tweetText").elements[0].value);
     selfUser.text = existingComment;
     tweetSection.appendChild(tweetStructure(selfUser, "published"));
-    let detailedUser = {text: existingComment, id:"10c06b27-d8ee-4435-9cee-0a2a838ca14a"};
+    let detailedUser = {text: existingComment, user: tempId};
     usersTweers.push(selfUser);
     postTweet(detailedUser);
 
 };
 
 var postTweet = function (user) {
-    postNewTweet(user)
-        .then(function (response) {
-            console.log(response.data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+   putNewTweet(user);
 };
-
-//     axios.put('http://10.103.50.193:8080/tweets', user)
-//         .then(function (response) {
-//             console.log(response.data);
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//         });
-// }

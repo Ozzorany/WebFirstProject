@@ -1,4 +1,4 @@
-const tempUser = "10c06b27-d8ee-4435-9cee-0a2a838ca14a";
+const tempUserId = "ff2b41b9-e1d8-4594-9aa3-c1dda30b0d22";
 var usersNames = [];
 var userFollowees = [];
 
@@ -13,41 +13,46 @@ var reloadExistingFollowees = function () {
     var existingUsersSection = $("#folowees-users").elements[0];
     for (user of userFollowees) {
         existingUsersSection.appendChild(UserSectionStructure(user, "col-md-12"));
-        changeStatus("folowees-users", user.id, "unfollow");
-        changeStatus("existing-users", user.id, "unfollow");
+        changeStatus("folowees-users", user._id, "unfollow");
+        changeStatus("existing-users", user._id, "unfollow");
     }
 }
 
+let reloadingFollowings = function () {
+    getAllFollowings(tempUserId)
+        .then(function (response) {
+            for (userId of response.data) {
+                userFollowees.push({
+                    _id: userId,
+                    username: getNameById(userId, usersNames),
+                    stage: "follow",
+                    image: "images/useravatar.png"
+                });
+            }
+        }).then(reloadExistingFollowees)
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+;
 getAllUsers()
     .then(function (response) {
         for (user of response.data) {
-            if (user._id !== tempUser) {
-                usersNames.push({id: user._id, name: user.username, stage: "follow", image: "images/useravatar.png"});
+            if (user._id !== tempUserId) {
+                usersNames.push({
+                    _id: user._id,
+                    username: user.username,
+                    stage: "follow",
+                    image: "images/useravatar.png"
+                });
             }
         }
-    }).then(reloadExistingUsers)
+    }).then(reloadExistingUsers).then(reloadingFollowings)
     .catch(function (error) {
         console.log(error);
     });
 
-getAllFollowings(tempUser)
-    .then(function (response) {
-        for (username of usersNames) {
-            for (userId of response.data) {
-                if (userId === username.id) {
-                    userFollowees.push({
-                        id: userId,
-                        name: username.name,
-                        stage: "follow",
-                        image: "images/useravatar.png"
-                    });
-                }
-            }
-        }
-    }).then(reloadExistingFollowees)
-    .catch(function (error) {
-        console.log(error);
-    });
+
 
 window.onload = function () {
     var filterhSearch = $("#filter-user").elements[0];
@@ -61,7 +66,7 @@ var UserSectionStructure = function (user, sectionSize) {
 
     var userSection = createDivElement();
     userSection.className = sectionSize;
-    userSection.id = user.id;
+    userSection.id = user._id;
     var thumbnail = createDivElement();
     thumbnail.className = "thumbnail";
     var generalUser = createDivElement();
@@ -82,18 +87,20 @@ var UserSectionStructure = function (user, sectionSize) {
     generalUser.appendChild(userFollow);
     generalUser.appendChild(userName);
     userFollow.appendChild(button);
-    userName.appendChild(document.createTextNode(user.name));
-    button.value = (user.stage);
+    userName.appendChild(document.createTextNode(user.username));
+    button.value = (user.stage)
     userImage.setAttribute("src", user.image);
     button.onclick = function () {
         if (button.value == "follow") {
             showFolowee(user);
-            changeStatus("folowees-users", user.id, "unfollow");
-            changeStatus("existing-users", user.id, "unfollow");
+            changeStatus("folowees-users", user._id, "unfollow");
+            changeStatus("existing-users", user._id, "unfollow");
         } else {
-            changeStatus("existing-users", user.id, "follow");
-            removeFollowee(user.id);
+            changeStatus("existing-users", user._id, "follow");
+            removeFollowee(user._id);
         }
+
+        followingUser(tempUserId, user._id);
     };
 
     return userSection;
@@ -102,10 +109,10 @@ var UserSectionStructure = function (user, sectionSize) {
 var filterUsers = function () {
     var textToFilter = $("#filter-user").elements[0].value;
     for (user of usersNames) {
-        if (!user.name.includes(textToFilter)) {
-            $("#existing-users" + " #" + user.id).elements[0].style.display = "none";
+        if (!user.username.includes(textToFilter)) {
+            $("#existing-users" + " #" + user._id).elements[0].style.display = "none";
         } else {
-            $("#existing-users" + " #" + user.id).elements[0].style.display = "block";
+            $("#existing-users" + " #" + user._id).elements[0].style.display = "block";
         }
     }
 }

@@ -2,7 +2,7 @@ function onPageLoad() {
     test_group("Selectors", function () {
         assert(OneImageLogo(), "One image logo");
         assert(fiveTweets(), "Five tweets");
-        assert(addTweetTest(), "Add tweet test");
+        //assert(addTweetTest(), "Add tweet test");
         assert(nonExistingId(), "Non existing id");
 
     });

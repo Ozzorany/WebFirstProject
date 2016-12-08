@@ -2,16 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>OfekTwitter | Users</title>
-    <link href="css/UsersPage.css" rel="stylesheet"/>
+    <title>sign in</title>
     <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
-    <script src="node_modules/axios/dist/axios.js"></script>
-    <script src="javaScript/Service.js"></script>
-    <script src="javaScript/OfekQuery.js"></script>
-    <script src="javaScript/DataProvider.js"></script>
-    <script src="javaScript/UtilsJs.js"></script>
-    <script src="javaScript/UserPage.js"></script>
 </head>
 <body>
 <header>
@@ -40,23 +33,34 @@
         </div>
     </nav>
 </header>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <input type="text" id="filter-user" class="form-control" placeholder="filter by user name">
-        </div>
-    </div>
-    <div class="row">
-        <div id="existing-users" class="col-md-10 allUsers">
-
-        </div>
-        <div id="folowees-users" class="col-md-2 followees">
-            <div class="col-md-12 ">
-                <h2>Followees</h2>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Log in</h3>
             </div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="#" method="post"><input type="hidden" name="form-name" value="form 1">
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="username">Username</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="password">Password</label>
+                        <div class="col-xs-4">
+                            <input type="password" class="form-control" id="password" placeholder="Password" required="">
+                        </div>
 
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-2">
+                            <button class="btn btn-primary">login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
