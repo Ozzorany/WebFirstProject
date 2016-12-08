@@ -18,6 +18,10 @@ function getUserFollowers(userId){
     return axios.get('http://10.103.50.190:8000/users/following/' + userId);
 }
 
+function userLogin(userData){
+  return axios.put('http://10.103.50.190:8000/login', userData);
+}
+
 var followingUser = function(userId, followeeId){
     axios.put('http://10.103.50.190:8000/following/' + userId +'/' + followeeId);
 };

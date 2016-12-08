@@ -40,6 +40,8 @@ let initialize = (app) =>{
     });
 };
 
+
+
 let getFollowees = function (userId) {
     for (user of users) {
         if (user._id === userId) {
