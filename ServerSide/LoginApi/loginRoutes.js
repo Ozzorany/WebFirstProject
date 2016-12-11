@@ -10,26 +10,48 @@ dataHandle.readFile('Users.json')
     });
 
 let initialize = (app) => {
-    app.put('/login', function (req, res) {
-        for(user of users) {
-            if (!req.body.username || !req.body.password) {
-                res.end('login failed');
-                break;
-            } else if (req.body.username === user.username || req.body.password === user.password) {
-                req.session.user = user.username;
-                req.session.id = user._id;
-                req.session.admin = true;
-                res.end("login success!");
-                console.log("login success!");
-                break;
-            } else {
-                res.send(JSON.stringify({result: false}), 'utf-8');
-                console.log("not good!");
-                break;
+    app.put('/login', function (req, resault) {
+        getAllTheUsers().then(function (res) {
+            users = res;
+            let result = {result:false};
+            let isUserExists = false;
+
+            for(user of users) {
+                if (!req.body.username || !req.body.password) {
+                    res.end('login failed');
+                    break;
+                } else if (req.body.username === user.username && req.body.password === user.password) {
+                    req.session.user = user.username;
+                    req.session.userid = user._id;
+                    req.session.admin = true;
+                    isUserExists = true;
+                    console.log("login success!");
+                } else {
+                    console.log("not good!");
+                }
             }
-        }
+
+            if(isUserExists){
+                result.result = true;
+            }
+            resault.send(result);
+        }).catch(function (res) {
+            console.log(res);
+        });
+
     });
 };
 
+var getAllTheUsers = function () {
+    return new Promise(function (resolve, reject) {
+        let allUsers = [];
+        dataHandle.readFile('Users.json')
+            .then(function (res) {
+                allUsers = res;
+                resolve(allUsers);
+            });
+    });
+}
 
-module.exports = {initialize : initialize};
+
+module.exports = {initialize : initialize};xports = {initialize : initialize};

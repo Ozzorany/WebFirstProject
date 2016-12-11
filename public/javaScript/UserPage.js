@@ -1,4 +1,4 @@
-const tempUserId = "ff2b41b9-e1d8-4594-9aa3-c1dda30b0d22";
+let tempId = "";
 var usersNames = [];
 var userFollowees = [];
 
@@ -19,7 +19,7 @@ var reloadExistingFollowees = function () {
 }
 
 let reloadingFollowings = function () {
-    getAllFollowings(tempUserId)
+    getAllFollowings(tempId)
         .then(function (response) {
             for (userId of response.data) {
                 userFollowees.push({
@@ -33,28 +33,39 @@ let reloadingFollowings = function () {
         .catch(function (error) {
             console.log(error);
         });
-}
-;
-getAllUsers()
-    .then(function (response) {
-        for (user of response.data) {
-            if (user._id !== tempUserId) {
-                usersNames.push({
-                    _id: user._id,
-                    username: user.username,
-                    stage: "follow",
-                    image: "images/useravatar.png"
-                });
-            }
-        }
-    }).then(reloadExistingUsers).then(reloadingFollowings)
-    .catch(function (error) {
-        console.log(error);
-    });
+};
 
+;
+let reloadAllUsers = function () {
+    getAllUsers()
+        .then(function (response) {
+            for (user of response.data) {
+                if (user._id !== tempId) {
+                    usersNames.push({
+                        _id: user._id,
+                        username: user.username,
+                        stage: "follow",
+                        image: "images/useravatar.png"
+                    });
+                }
+            }
+        }).then(reloadExistingUsers).then(reloadingFollowings)
+        .catch(function (error) {
+            console.log(error);
+        });
+};
 
 
 window.onload = function () {
+    getUser().then(function (res) {
+        if (!res.data.userId != "") {
+            window.location.href = "/SignIn.html";
+        } else {
+            tempId = res.data.userId;
+            reloadAllUsers();
+        }
+    });
+
     var filterhSearch = $("#filter-user").elements[0];
     filterhSearch.addEventListener("input", function () {
         filterUsers();
@@ -100,7 +111,7 @@ var UserSectionStructure = function (user, sectionSize) {
             removeFollowee(user._id);
         }
 
-        followingUser(tempUserId, user._id);
+        followingUser(tempId, user._id);
     };
 
     return userSection;

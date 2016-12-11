@@ -38,6 +38,22 @@ let initialize = (app) =>{
 
         res.end();
     });
+    
+    app.get('/session', function (req, res) {
+        let userExists = {userId:""};
+        if(req.session.userid != undefined){
+            userExists.userId = req.session.userid;
+        }
+        res.send(userExists);
+
+    });
+
+    app.put('/register', function (req, res) {
+        req.body._id =  generateValidId(users);
+        users.push(req.body);
+        dataHandle.writeToFile("Users.json", users);
+        res.end();
+    });
 };
 
 
@@ -77,6 +93,37 @@ let updateFollowees = function (userFollowees, followingUser) {
         userFollowees.push(followingUser);
     }
 };
+
+function generateValidId(users) {
+    let newId = "";
+
+    do {
+        newId = generateRandomString(8) + '-' + generateRandomString(4) + '-' + generateRandomString(4) + '-' +
+            generateRandomString(4) + '-' + generateRandomString(12);
+    } while(!validId(users, newId));
+
+    return newId;
+}
+
+function generateRandomString(length) {
+    let mask = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+
+    for (let index = 0; index < length; index++) {
+        result += mask[Math.floor(Math.random() * mask.length)];
+    }
+
+    return result;
+}
+
+function validId(users, id) {
+    for (user of users) {
+        if (user._id === id) {
+            return false;
+        }
+    }
+    return true;
+}
 
 module.exports = {initialize : initialize};
 

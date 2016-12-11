@@ -1,10 +1,12 @@
 var usersTweers = [];
-const tempId = "ff2b41b9-e1d8-4594-9aa3-c1dda30b0d22";
+let tempId = "";
+let nameOfuser = "";
 
 let mapUsresName = function () {
     return getAllUsers()
         .then(function (response) {
             getNameById(usersTweers, response.data);
+            nameOfuser = getNameById(tempId, response.data)
             for (user of usersTweers) {
                 user.userName = getNameById(user.userName, response.data);
             }
@@ -35,6 +37,14 @@ getAllTweets()
 
 
 window.onload = function () {
+    getUser().then(function (res) {
+        if(!res.data.userId != "") {
+            window.location.href = "/SignIn.html";
+        } else {
+            tempId  = res.data.userId;
+        }
+    });
+
     onPageLoad();
     var publishButton = $("#publishButton").elements[0];
     publishButton.addEventListener("click", function () {
@@ -76,7 +86,7 @@ var tweetStructure = function (user, nameClass) {
 
 var createPublishedTweet = function () {
     var tweetSection = $("#allTweets").elements[0];
-    var selfUser = {userName: 'Bulter', text: '', image: "images/useravatar.png"}
+    var selfUser = {userName: nameOfuser, text: '', image: "images/useravatar.png"}
     var existingComment = ($("#tweetText").elements[0].value);
     selfUser.text = existingComment;
     tweetSection.appendChild(tweetStructure(selfUser, "published"));

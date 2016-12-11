@@ -10,11 +10,13 @@ window.onload = function () {
 
 let requestSignIn = function () {
     userLogin(getInfo()).then(function (res) {
-        if(res.data.resault){
+        if(res.data.result){
             alert("yey");
         } else {
             alert("boo");
         }
+    }).catch(function (res) {
+        console.log(res);
     });
 };
 

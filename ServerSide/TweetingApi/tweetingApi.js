@@ -18,10 +18,9 @@ dataHandle.readFile('Tweets.json')
 
 let initialize = (app) => {
     app.get('/tweets', function (req, res) {
-        (getAllUserTweets("ff2b41b9-e1d8-4594-9aa3-c1dda30b0d22").then(function (fucRes) {
+        (getAllUserTweets(req.session.userid).then(function (fucRes) {
             res.send(fucRes)
         }));
-        //res.send(tweets);
     });
 
     app.get('/tweets/:userId', function (req, res) {
