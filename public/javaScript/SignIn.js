@@ -12,6 +12,7 @@ let requestSignIn = function () {
     userLogin(getInfo()).then(function (res) {
         if(res.data.result){
             alert("yey");
+            window.location.href = "/index.html"
         } else {
             alert("boo");
         }

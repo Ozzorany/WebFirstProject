@@ -1,20 +1,20 @@
 var usersTweers = [];
-let tempId = "";
+// let tempId = "";
 let nameOfuser = "";
 
-let mapUsresName = function () {
-    return getAllUsers()
-        .then(function (response) {
-            getNameById(usersTweers, response.data);
-            nameOfuser = getNameById(tempId, response.data)
-            for (user of usersTweers) {
-                user.userName = getNameById(user.userName, response.data);
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-};
+// let mapUsresName = function () {
+//     return getAllUsers()
+//         .then(function (response) {
+//             getNameById(usersTweers, response.data);
+//             nameOfuser = getNameById(tempId, response.data)
+//             for (user of usersTweers) {
+//                 user.userName = getNameById(user.userName, response.data);
+//             }
+//         })
+//         .catch(function (error) {
+//             console.log(error);
+//         });
+// };
 
 var realoadExistingTweets = function () {
     var tweetSection = $("#allTweets").elements[0];
@@ -23,17 +23,17 @@ var realoadExistingTweets = function () {
     }
 };
 
-getAllTweets()
-    .then(function (response) {
-        for (userData of response.data) {
-            usersTweers.push({userName: userData.user, text: userData.text, image: "images/useravatar.png"});
-        }
-    })
-    .then(mapUsresName)
-    .then(realoadExistingTweets)
-    .catch(function (error) {
-        console.log(error);
-    });
+// getAllTweets()
+//     .then(function (response) {
+//         for (userData of response.data) {
+//             usersTweers.push({userName: userData.user, text: userData.text, image: "images/useravatar.png"});
+//         }
+//     })
+//     .then(mapUsresName)
+//     .then(realoadExistingTweets)
+//     .catch(function (error) {
+//         console.log(error);
+//     });
 
 
 window.onload = function () {
@@ -104,3 +104,13 @@ var createPublishedTweet = function () {
 var postTweet = function (user) {
    putNewTweet(user);
 };
+
+// Testing
+describe("Tweeting", function() {
+    describe("checks Creating an tweeting element", function() {
+        it("getNameById", function() {
+            let divElement = document.createElement("div");
+            expect(createDivElement()).toEqual(divElement);
+        });
+    });
+});
