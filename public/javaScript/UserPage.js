@@ -62,18 +62,13 @@ window.onload = function () {
             window.location.href = "/SignIn.html";
         } else {
             tempId = res.data.userId;
-            reloadAllUsers();
+            reloadingFollowings();
         }
     });
 
     var filterhSearch = $("#filter-user").elements[0];
     filterhSearch.addEventListener("input", function () {
         filterUsers();
-    });
-
-    let logout = $("#logout").elements[0];
-    logout.addEventListener("click", function () {
-        userLogOut();
     });
 };
 

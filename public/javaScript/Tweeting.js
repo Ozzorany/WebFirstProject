@@ -1,5 +1,5 @@
 var usersTweers = [];
-// let tempId = "";
+// var tempId = "";
 let nameOfuser = "";
 
 // let mapUsresName = function () {
@@ -38,24 +38,24 @@ var realoadExistingTweets = function () {
 
 window.onload = function () {
     getUser().then(function (res) {
-        if(!res.data.userId != "") {
+        if (!res.data.userId != "") {
             window.location.href = "/SignIn.html";
         } else {
-            tempId  = res.data.userId;
+            tempId = res.data.userId;
         }
     });
 
     onPageLoad();
     var publishButton = $("#publishButton").elements[0];
-    publishButton.addEventListener("click", function () {
-        createPublishedTweet();
-        $("#tweetText").elements[0].value = "";
-    });
+    // publishButton.addEventListener("click", function () {
+    //     createPublishedTweet();
+    //     $("#tweetText").elements[0].value = "";
+    // });
 
     let logout = $("#logout").elements[0];
-    logout.addEventListener("click", function () {
-        userLogOut();
-    });
+    // logout.addEventListener("click", function () {
+    //     userLogOut();
+    // });
 };
 
 
@@ -102,15 +102,27 @@ var createPublishedTweet = function () {
 };
 
 var postTweet = function (user) {
-   putNewTweet(user);
+    putNewTweet(user);
 };
 
+
 // Testing
-describe("Tweeting", function() {
-    describe("checks Creating an tweeting element", function() {
-        it("getNameById", function() {
-            let divElement = document.createElement("div");
-            expect(createDivElement()).toEqual(divElement);
+
+describe("Tweeting", function () {
+    describe("gets user's name by his id", function () {
+
+        it("getNameById", function () {
+            usersTweers = [{
+                "text": "hi",
+                "text": "hi",
+                "user": "10c06b27-d8ee-4435-9cee-0a2a838ca14a"
+            }];
+
+            spyOn(window, "tweetStructure");
+            realoadExistingTweets();
+            expect(window.tweetStructure).toHaveBeenCalled();
         });
     });
 });
+
+

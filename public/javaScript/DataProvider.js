@@ -7,3 +7,14 @@ var getNameById = function (userId, usersWithNamesArray) {
 
     return null;
 };
+
+// Testing
+describe("DataProvider", function() {
+    describe("gets user's name by his id", function() {
+        let tempUsers = [{_id:"123", username:"oz"}];
+
+        it("getNameById", function() {
+            expect(getNameById("123",tempUsers)).toEqual("oz");
+        });
+    });
+});
