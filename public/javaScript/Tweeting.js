@@ -51,6 +51,11 @@ window.onload = function () {
         createPublishedTweet();
         $("#tweetText").elements[0].value = "";
     });
+
+    let logout = $("#logout").elements[0];
+    logout.addEventListener("click", function () {
+        userLogOut();
+    });
 };
 
 

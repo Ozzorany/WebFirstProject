@@ -40,6 +40,10 @@ let initialize = (app) => {
         });
 
     });
+
+    app.put('/logOut', function (req, resault) {
+        req.session.destroy();
+    });
 };
 
 var getAllTheUsers = function () {

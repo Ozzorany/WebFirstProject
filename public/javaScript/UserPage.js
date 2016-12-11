@@ -70,6 +70,11 @@ window.onload = function () {
     filterhSearch.addEventListener("input", function () {
         filterUsers();
     });
+
+    let logout = $("#logout").elements[0];
+    logout.addEventListener("click", function () {
+        userLogOut();
+    });
 };
 
 

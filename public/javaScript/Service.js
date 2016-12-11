@@ -29,6 +29,10 @@ function userLogin(userData){
   return axios.put(address + '/login', userData);
 }
 
+function userLogOut(){
+     axios.put(address + '/logOut');
+}
+
 var followingUser = function(userId, followeeId){
     axios.put(address + '/following/' + userId +'/' + followeeId);
 };
