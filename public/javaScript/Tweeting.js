@@ -106,23 +106,3 @@ var postTweet = function (user) {
 };
 
 
-// Testing
-
-describe("Tweeting", function () {
-    describe("gets user's name by his id", function () {
-
-        it("getNameById", function () {
-            usersTweers = [{
-                "text": "hi",
-                "text": "hi",
-                "user": "10c06b27-d8ee-4435-9cee-0a2a838ca14a"
-            }];
-
-            spyOn(window, "tweetStructure");
-            realoadExistingTweets();
-            expect(window.tweetStructure).toHaveBeenCalled();
-        });
-    });
-});
-
-

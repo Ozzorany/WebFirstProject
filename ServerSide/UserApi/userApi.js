@@ -125,7 +125,17 @@ function validId(users, id) {
     return true;
 }
 
-module.exports = {initialize : initialize};
+function getAllUsers() {
+    return new Promise(function (resolve, reject) {
+        dataHandle.readFile('Users.json')
+            .then(function (res) {
+                users = res;
+                resolve(users);
+            });
+    });
+};
+
+module.exports = {getAllUsers : getAllUsers, getFollowees: getFollowees, getAllUserFollowers: getAllUserFollowers};
 
 
 

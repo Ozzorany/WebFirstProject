@@ -83,4 +83,4 @@ let followeesTweets = function (allTweets, mapedUsers, userId) {
     return mapedTweets;
 };
 
-module.exports = {initialize: initialize};
+module.exports = {initialize: initialize, getAllUserTweets:getAllUserTweets};
